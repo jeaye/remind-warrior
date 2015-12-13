@@ -14,7 +14,7 @@ Add the following line to your `~/.reminders`, adjusting as needed:
 INCLUDE /home/USER/.remind/remind-warrior.rem
 ```
 
-Now add a job to your crontab:
+Now add a job to your crontab. In this example, we update every 5 minutes:
 ```bash
 $ crontab -e
 
