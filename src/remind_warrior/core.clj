@@ -4,16 +4,18 @@
             [clj-time.format :as tf]
             [clojure.data.json :as json]))
 
-(defn parse-time [time-str]
+(defn parse-time [time-str form] ; TODO: Overload on arity with default form
   (tf/unparse
-    (tf/formatter "MMMM d yyyy")
+    (tf/formatter form)
     (tf/parse (tf/formatters :basic-date-time-no-ms) time-str)))
 
 (defn task->rem [task]
-  (let [todo [(str "REM " (parse-time (:entry task))
+  (pprint/pprint task)
+  (let [todo [(str "REM " (parse-time (:entry task) "MMMM d yyyy")
                    " *1 MSG " (:description task))]]
     (if-let [due (:due task)]
-      (conj todo (str "REM " (parse-time due)
+      (conj todo (str "REM " (parse-time due "MMMM d yyyy")
+                      " AT " (parse-time due "HH:mm")
                       " MSG Due: " (:description task)))
       todo)))
 
