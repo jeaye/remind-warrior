@@ -1,7 +1,6 @@
 (ns remind-warrior.core
   (:gen-class)
   (:require [clojure.java.shell :as shell]
-            [clojure.pprint :as pprint]
             [clj-time.format :as tf]
             [clojure.data.json :as json]))
 
