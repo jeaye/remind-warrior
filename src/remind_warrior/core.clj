@@ -6,5 +6,7 @@
 
 (defn -main
   [& args]
-  (let [parsed (json/read-str (:out (shell/sh "task" "export")))]
-    (pprint/pprint parsed)))
+  (let [parsed (filter #(not= (:status %) "deleted")
+                       (json/read-str (:out (shell/sh "task" "export"))
+                                      :key-fn keyword))]
+    (pprint/pprint (apply list parsed))))
