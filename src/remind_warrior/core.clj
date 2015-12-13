@@ -1,8 +1,10 @@
 (ns remind-warrior.core
   (:gen-class)
-  (:require [clojure.data.json :as json]))
+  (:require [clojure.java.shell :as shell]
+            [clojure.pprint :as pprint]
+            [clojure.data.json :as json]))
 
 (defn -main
   [& args]
-  (let [parsed (json/read-str (first args))]
-    (println (json/write-str parsed))))
+  (let [parsed (json/read-str (:out (shell/sh "task" "export")))]
+    (pprint/pprint parsed)))
