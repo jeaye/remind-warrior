@@ -1,7 +1,9 @@
 (ns remind-warrior.core
   (:gen-class)
   (:require [clojure.java.shell :as shell]
+            [clj-time.core :as t]
             [clj-time.format :as tf]
+            [clj-time.local :as tl]
             [clojure.pprint :as pp]
             [clojure.data.json :as json]))
 
@@ -9,11 +11,12 @@
   ([time-str] (parse-time time-str "MMMM d yyyy"))
   ([time-str form]
    (tf/unparse
-     (tf/formatter form)
-     (tf/parse (tf/formatters :basic-date-time-no-ms) time-str))))
+     (tf/formatter-local form)
+     (t/to-time-zone (tf/parse
+                       (tf/formatters :basic-date-time-no-ms) time-str)
+                     (t/default-time-zone)))))
 
 (defn task->rem [task]
-  ;(pp/pprint task)
   (let [todo [(str "REM " (parse-time (:entry task))
                    " *1 MSG " (:description task))]]
     (if-let [due (:due task)]
