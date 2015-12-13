@@ -1,7 +1,9 @@
 # remind-warrior
-remind-warrior reads TaskWarrior's tasks, filters and sorts them, and converts
-them to the Remind format. This allows me to use Wyrd to see all of my TODOs and
-due dates, as well as my normal reminders.
+remind-warrior reads [TaskWarrior's](https://taskwarrior.org/) tasks, filters
+and sorts them, and converts them to the
+[Remind](https://www.roaringpenguin.com/products/remind) format. This allows me
+to use [Wyrd](http://pessimization.com/software/wyrd/) to see all of my TODOs
+and due dates, as well as my normal reminders.
 
 ## Build
 ```bash
@@ -14,7 +16,8 @@ Add the following line to your `~/.reminders`, adjusting as needed:
 INCLUDE /home/USER/.remind/remind-warrior.rem
 ```
 
-Now add a job to your crontab. In this example, we update every 5 minutes:
+Now add a job to your [crontab](https://wiki.archlinux.org/index.php/Cron). In
+this example, we update every 5 minutes:
 ```bash
 $ crontab -e
 
