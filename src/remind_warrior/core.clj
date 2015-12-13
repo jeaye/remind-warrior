@@ -31,11 +31,10 @@
 (defn -main
   [& args]
   (let [tasks (->> (json/read-str (:out (shell/sh "task" "export"))
-                                   :key-fn keyword)
-                    (filter #(= (:status %) "pending"))
-                    (sort-by :urgency)
-                    reverse)
-        rems (mapcat task->rem tasks)]
-    (doseq [line rems]
+                                  :key-fn keyword)
+                   (filter #(= (:status %) "pending"))
+                   (sort-by :urgency)
+                   reverse)]
+    (doseq [line (mapcat task->rem tasks)]
       (println line)))
   (shutdown-agents))
