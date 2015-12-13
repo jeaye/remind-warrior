@@ -6,7 +6,9 @@
 
 (defn -main
   [& args]
-  (let [parsed (filter #(not= (:status %) "deleted")
-                       (json/read-str (:out (shell/sh "task" "export"))
-                                      :key-fn keyword))]
+  (let [parsed (reverse
+                 (sort-by :urgency
+                          (filter #(not= (:status %) "deleted")
+                                  (json/read-str (:out (shell/sh "task" "export"))
+                                                 :key-fn keyword))))]
     (pprint/pprint (apply list parsed))))
