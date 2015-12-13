@@ -37,4 +37,5 @@
                     reverse)
         rems (mapcat task->rem tasks)]
     (doseq [line rems]
-      (println line))))
+      (println line)))
+  (shutdown-agents))
