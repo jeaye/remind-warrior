@@ -1,6 +1,7 @@
 # remind-warrior
 remind-warrior reads TaskWarrior's tasks, filters and sorts them, and converts
-them to the Remind format.
+them to the Remind format. This allows me to use Wyrd to see all of my TODOs and
+due dates, as well as my normal reminders.
 
 ## Build
 ```bash
