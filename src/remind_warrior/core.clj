@@ -30,7 +30,7 @@
 
 (defn -main
   [& args]
-  (let [tasks (->> (json/read-str (:out (shell/sh "task" "export"))
+  (let [tasks (->> (json/read-str (:out (shell/sh "task" "rc.gc=off" "export"))
                                   :key-fn keyword)
                    (filter #(= (:status %) "pending"))
                    (sort-by :urgency)
