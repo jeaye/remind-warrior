@@ -10,7 +10,12 @@
     (tf/parse (tf/formatters :basic-date-time-no-ms) time-str)))
 
 (defn task->rem [task]
-  [(str "REM " (parse-time (:entry task)) " *1 MSG " (:description task))])
+  (let [todo [(str "REM " (parse-time (:entry task))
+                   " *1 MSG " (:description task))]]
+    (if-let [due (:due task)]
+      (conj todo (str "REM " (parse-time due)
+                      " MSG Due: " (:description task)))
+      todo)))
 
 (defn -main
   [& args]
