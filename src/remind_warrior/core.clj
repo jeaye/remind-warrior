@@ -11,7 +11,7 @@
     (tf/parse (tf/formatters :basic-date-time-no-ms) time-str)))
 
 (defn task->rem [task]
-  [(str "REM " (parse-time (:entry task)) " MSG " (:description task))])
+  [(str "REM " (parse-time (:entry task)) "*1 MSG " (:description task))])
 
 (defn -main
   [& args]
